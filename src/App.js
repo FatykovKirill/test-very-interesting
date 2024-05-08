@@ -31,7 +31,7 @@ function App() {
     setBooks(books.filter(p => p.id !== book.id))
   };
   const [group, setGroup] = useState('year');
-  console.log(books);
+
   return (
     <div className="App">
       <PostForm create={createBook} />

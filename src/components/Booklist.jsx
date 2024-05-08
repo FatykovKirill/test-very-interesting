@@ -8,7 +8,7 @@ const Booklist = ({ books, group, remove }) => {
     const group = acc[groupName] ?? [];
     return { ...acc, [groupName]: group.concat(book) };
   }, {});
-  console.log(Object.entries(groupBy(books, group)));
+
   return (
     <>
       {Object.entries(groupBy(books, group))

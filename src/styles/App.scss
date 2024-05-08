@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  width: 800px;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.book {
+  padding: 15px;
+  margin-top: 15px;
+  border: 2px solid gray;
+
+  &__name {
+    font-size: 15px;
+  }
+
+  &__content {
+    font-size: 12px;
+    list-style: none;
+  }
+
+  &__recom {
+    margin-top: 15px;
+
+    h1 {
+      font-size: 15px;
+    }
+  }
+}
+
+.group {
+
+  &__name {
+    margin-top: 15px;
+    font-size: 15px;
+  }
+}

@@ -19,7 +19,7 @@ const Booklist = ({ books, group, remove }) => {
         })
         .map(([groupName, books], index) => {
           return <div className='group' key={index}>
-            <h1 className='group__name'>{groupName === 'null' ?
+            <h1 className='group__name'>{groupName === 'null' || groupName === '' ?
               `Книги без указания ${group === 'year' ? 'года' : 'рейтинга'}` : groupName}</h1>
             {books
               .sort((a, b) => (a.name > b.name) ? 1 : -1)

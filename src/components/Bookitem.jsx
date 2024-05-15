@@ -4,7 +4,7 @@ import ButtonBook from './UI/ButtonBook/ButtonBook';
 const Bookitem = ({ props, remove }) => {
 
   const renderOptionItem = (name, value) => {
-    if (value === null) {
+    if (value === null || value === '') {
       return '';
     }
     return `${name}: ${value}`
@@ -19,9 +19,11 @@ const Bookitem = ({ props, remove }) => {
         <li>{renderOptionItem('Рейтинг', props.rating)}</li>
         <li>{renderOptionItem('ISBN', props.isbn)}</li>
       </ul>
-      <div className="book__btn">
-        <ButtonBook onClick={() => remove(props)}>Удалить</ButtonBook>
-      </div>
+      {remove && (
+        <div className="book__btn">
+          <ButtonBook onClick={() => remove(props)}>Удалить</ButtonBook>
+        </div>
+      )}
     </div>
   );
 };

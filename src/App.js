@@ -4,7 +4,7 @@ import RecomBook from "./components/RecomBook";
 import PostForm from "./components/BookForm";
 import SelectGroupBooks from "./components/UI/SelectGroupBooks/SelectGroupBooks";
 import './firebaseConfig';
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getFirestore, getDocs, addDoc, deleteDoc, collection, doc } from "firebase/firestore";
 import './styles/App.scss'
 
 
@@ -20,16 +20,24 @@ function App() {
     });
     setBooks(temporaryArr);
   };
+
   useEffect(() => {
     fetchDataFromFirestore();
   }, []);
-  const createBook = (newBook) => {
-    setBooks([...books, newBook])
+
+  const createBook = async (newBook) => {
+    const firestore = getFirestore();
+    const docRef = await addDoc(collection(firestore, 'books'), newBook);
+    const addedBook = { id: docRef.id, ...newBook };
+    setBooks((prevBooks) => [...prevBooks, addedBook]);
   };
 
-  const removeBook = (book) => {
+  const removeBook = async (book) => {
+    const firestore = getFirestore();
+    await deleteDoc(doc(firestore, 'books', book.id));
     setBooks(books.filter(p => p.id !== book.id))
   };
+
   const [group, setGroup] = useState('year');
 
   return (
